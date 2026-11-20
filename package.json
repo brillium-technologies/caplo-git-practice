@@ -1,0 +1,13 @@
+{
+  "name": "caplo-git-practice",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Throwaway repository for the Caplo Git and CLAUDE.md practice exercises. Made-up code only.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check": "npm run check:i18n && npm test"
+  }
+}
