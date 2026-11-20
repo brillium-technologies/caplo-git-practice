@@ -22,3 +22,4 @@ npm run check
 ## Contact
 
 Engineering lead: Venkat, CTO, Brillium
+Support e-mail: support@caplo.in
