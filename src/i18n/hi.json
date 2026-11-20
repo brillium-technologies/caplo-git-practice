@@ -1,5 +1,6 @@
 {
   "amount.invalid": "कृपया सही राशि दर्ज करें।",
   "otp.invalid": "OTP सही नहीं है। कृपया फिर से प्रयास करें।",
+  "otp.resendLimitReached": "बहुत अधिक OTP अनुरोध हुए हैं। कृपया {minutes} मिनट बाद फिर से प्रयास करें।",
   "otp.sms": "{mobile} के लिए आपका Caplo OTP {otp} है। यह {minutes} मिनट तक मान्य है। इसे किसी के साथ साझा न करें।"
 }
