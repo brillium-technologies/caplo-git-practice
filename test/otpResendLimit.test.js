@@ -52,3 +52,8 @@ test('resends for other mobile numbers do not count', () => {
   const previousResends = [{ mobile: other, sentAt: ago(3) }, { mobile: other, sentAt: ago(2) }, { mobile: other, sentAt: ago(1) }];
   assert.deepEqual(checkOtpResend({ mobile, previousResends, now }), { allowed: true });
 });
+
+test('minutes rounds up to 1 when only seconds are left', () => {
+  const previousResends = [{ mobile, sentAt: ago(14, 59) }, { mobile, sentAt: ago(5) }, { mobile, sentAt: ago(1) }];
+  assert.deepEqual(checkOtpResend({ mobile, previousResends, now }).params, { minutes: 1 });
+});
