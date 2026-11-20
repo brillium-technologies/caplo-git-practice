@@ -24,8 +24,10 @@ Rules return data, never display text: `{ messageKey, params }`. The app (or the
 
 ## 5. Repository layout
 
+- `src/access/`: OTP and sign-in rules (`checkOtpResend`).
 - `src/config/`: `clientConfig`, the per-client limits from Appendix E.
 - `src/i18n/`: `en.json`, `te.json`, `hi.json` and `t()`.
+- `src/loan/`: loan amount entry (`checkLoanAmount`, `formatRupees`), used by the app's amount field and summary screens.
 - `src/money/`: rupee and paise conversions.
 - `src/sms/`: SMS text builders and `maskMobile`.
 - `test/`: one `*.test.js` file per source file.
@@ -51,6 +53,7 @@ Rules return data, never display text: `{ messageKey, params }`. The app (or the
 
 - Money is stored as integer paise. Never use floating point for stored amounts.
 - Rupees are shown with Indian grouping: ₹1,00,00,000.
+- Typed amounts are converted to paise from their digits with `checkLoanAmount`, never through floating point. More than two decimal places is refused, not rounded. Show amounts with `formatRupees`.
 - Rules take `now: Date` as a parameter. No `Date.now()` or `new Date()` inside a rule.
 
 ### Mobile numbers
@@ -60,7 +63,7 @@ Rules return data, never display text: `{ messageKey, params }`. The app (or the
 
 ### Rate limiting
 
-- Rate limiting: to be added.
+- OTP resends: at most `otp.resendLimit` per mobile number in a rolling `otp.resendWindowMinutes` window, checked by `checkOtpResend` in `src/access/otpResendLimit.js` (refuses with `otp.resendLimitReached`).
 
 ## 8. Testing
 
