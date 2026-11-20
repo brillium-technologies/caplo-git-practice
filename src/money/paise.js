@@ -4,7 +4,7 @@
  * @returns {number}
  */
 export function rupeesToPaise(rupees) {
-  return Math.floor(rupees * 100);
+  return Math.round(rupees * 100);
 }
 
 /**
