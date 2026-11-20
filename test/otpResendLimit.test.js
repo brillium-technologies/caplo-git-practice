@@ -57,3 +57,14 @@ test('minutes rounds up to 1 when only seconds are left', () => {
   const previousResends = [{ mobile, sentAt: ago(14, 59) }, { mobile, sentAt: ago(5) }, { mobile, sentAt: ago(1) }];
   assert.deepEqual(checkOtpResend({ mobile, previousResends, now }).params, { minutes: 1 });
 });
+
+test('with more resends than the limit, minutes counts until the count drops below the limit', () => {
+  // 4 in the window: the count drops to 2 only when the second oldest (12 minutes ago) leaves, in 3 minutes.
+  const previousResends = [
+    { mobile, sentAt: ago(14) },
+    { mobile, sentAt: ago(12) },
+    { mobile, sentAt: ago(5) },
+    { mobile, sentAt: ago(1) },
+  ];
+  assert.deepEqual(checkOtpResend({ mobile, previousResends, now }).params, { minutes: 3 });
+});
