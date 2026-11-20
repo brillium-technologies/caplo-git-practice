@@ -24,6 +24,7 @@ Rules return data, never display text: `{ messageKey, params }`. The app (or the
 
 ## 5. Repository layout
 
+- `src/access/`: OTP and sign-in rules (`checkOtpResend`).
 - `src/config/`: `clientConfig`, the per-client limits from Appendix E.
 - `src/i18n/`: `en.json`, `te.json`, `hi.json` and `t()`.
 - `src/money/`: rupee and paise conversions.
@@ -60,7 +61,7 @@ Rules return data, never display text: `{ messageKey, params }`. The app (or the
 
 ### Rate limiting
 
-- Rate limiting: to be added.
+- OTP resends: at most `otp.resendLimit` per mobile number in a rolling `otp.resendWindowMinutes` window, checked by `checkOtpResend` in `src/access/otpResendLimit.js` (refuses with `otp.resendLimitReached`).
 
 ## 8. Testing
 
