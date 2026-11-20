@@ -54,3 +54,7 @@ test('formatRupees groups small amounts and shows one-digit paise as two digits'
   assert.equal(formatRupees(99900), '₹999');
   assert.equal(formatRupees(100005), '₹1,000.05');
 });
+
+test('a leading zero is read as a decimal amount', () => {
+  assert.deepEqual(checkLoanAmount('010000'), { valid: true, amountPaise: 1000000 });
+});
